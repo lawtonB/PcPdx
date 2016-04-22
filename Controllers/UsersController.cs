@@ -14,7 +14,7 @@ namespace PcPdx.Controllers
         private PcPdxContext db = new PcPdxContext();
         public IActionResult Index()
         {
-            return View(db.Shows.ToList());
+            return View(db.Users.ToList());
         }
     }
 }

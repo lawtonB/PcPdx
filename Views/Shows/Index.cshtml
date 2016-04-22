@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Pc-Pdx";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<PcPdx.Models.Show>
+
+
+<h2>Shows</h2>
+<ul>
+    @foreach (var listShow in Model)
+    {
+        <li>@Html.DisplayFor(modelShow => listShow.ShowTitle)</li>
+
+    }
+</ul>

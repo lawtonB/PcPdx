@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using PcPdx.Models;
+using Microsoft.Data.Entity;
+
 
 
 namespace PcPdx.Controllers
@@ -28,6 +30,19 @@ namespace PcPdx.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
 
+        }
+        public IActionResult Edit(int id)
+        {
+            var thisShow = db.Shows.FirstOrDefault(shows => shows.ShowId == id);
+            return View(thisShow);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Show show)
+        {
+            db.Entry(show).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("index");
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using PcPdx.Models;
+using Microsoft.Data.Entity;
+
 
 
 
@@ -29,6 +31,19 @@ namespace PcPdx.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
 
+        }
+        public IActionResult Edit(int id)
+        {
+            var thisUser = db.Users.FirstOrDefault(users => users.UserId == id);
+            return View(thisUser);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(User user)
+        {
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("index");
         }
     }
 }

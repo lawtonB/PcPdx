@@ -44,5 +44,20 @@ namespace PcPdx.Controllers
             db.SaveChanges();
             return RedirectToAction("index");
         }
+
+        public IActionResult Delete(int id)
+        {
+            var thisShow = db.Shows.FirstOrDefault(shows => shows.ShowId == id);
+            return View(thisShow);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var thisShow = db.Shows.FirstOrDefault(shows => shows.ShowId == id);
+            db.Shows.Remove(thisShow);
+            db.SaveChanges();
+            return RedirectToAction("index");
+        }
     }
 }

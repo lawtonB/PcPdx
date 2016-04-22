@@ -15,5 +15,19 @@ namespace PcPdx.Controllers
         {
             return View(db.Shows.ToList());
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Show show)
+        {
+            db.Shows.Add(show);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
     }
 }

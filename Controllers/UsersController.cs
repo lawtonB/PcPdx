@@ -16,5 +16,19 @@ namespace PcPdx.Controllers
         {
             return View(db.Users.ToList());
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(User user)
+        {
+            db.Users.Add(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
     }
 }

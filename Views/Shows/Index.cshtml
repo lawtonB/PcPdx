@@ -2,6 +2,7 @@
     ViewData["Title"] = "Pc-Pdx";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @model IEnumerable<PcPdx.Models.Show>
 
 
@@ -13,3 +14,4 @@
 
     }
 </ul>
+<p>@Html.ActionLink("Add new Show", "Create")</p>

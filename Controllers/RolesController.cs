@@ -102,5 +102,28 @@ namespace PcPdx.Controllers
             return View("ManageUserRoles");
 
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteRoleForUser(string UserName, string RoleName)
+        {
+
+            ApplicationUser user = _db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+
+            if (_userManager.IsInRoleAsync(user, RoleName).Result)
+            {
+                var result = await _userManager.RemoveFromRoleAsync(user, RoleName);
+                ViewBag.ResultMessage = "Role removed from this user successfully !";
+            }
+            else
+            {
+                ViewBag.ResultMessage = "This user doesn't belong to selected role.";
+            }
+            // prepopulat roles for the view dropdown
+            var list = _db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+            ViewBag.Roles = list;
+
+            return RedirectToAction("ManageUserRoles");
+        }
     }
 }

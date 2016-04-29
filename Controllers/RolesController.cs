@@ -55,5 +55,12 @@ namespace PcPdx.Controllers
                 return View();
             }
         }
+        public ActionResult Delete(string Rolename)
+        {
+            var thisRole = _db.Roles.Where(r => r.Name.Equals(Rolename, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            _db.Roles.Remove(thisRole);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

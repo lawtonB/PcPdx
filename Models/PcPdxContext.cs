@@ -11,7 +11,12 @@ namespace PcPdx.Models
 {
     public class PcPdxContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<User> Users { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+        }
+        public DbSet<SiteUser> SiteUsers { get; set; }
         public DbSet<Show> Shows { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

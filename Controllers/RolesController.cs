@@ -70,37 +70,37 @@ namespace PcPdx.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> RoleAddToUser(string UserName, string RoleName)
-        //{
-        //    //Async method requires Task which means that await is required on result
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RoleAddToUser(string UserName, string RoleName)
+        {
+            //Async method requires Task which means that await is required on result
 
-        //    ApplicationUser user = _db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-        //    var result = await _userManager.AddToRoleAsync(user, RoleName);
+            ApplicationUser user = _db.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            var result = await _userManager.AddToRoleAsync(user, RoleName);
 
-        //    return RedirectToAction("Index");
-        //}
+            return RedirectToAction("Index");
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult GetRoles(string UserName)
-        //{
-        //    if (!string.IsNullOrWhiteSpace(UserName))
-        //    {
-        //        ApplicationUser user = _db.Users
-        //           .Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GetRoles(string UserName)
+        {
+            if (!string.IsNullOrWhiteSpace(UserName))
+            {
+                ApplicationUser user = _db.Users
+                   .Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
-        //        ViewBag.RolesForThisUser = _userManager.GetRolesAsync(user).Result;
+                ViewBag.RolesForThisUser = _userManager.GetRolesAsync(user).Result;
 
-        //        var list = _db.Roles
-        //            .OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+                var list = _db.Roles
+                    .OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
 
-        //        ViewBag.Roles = list;
+                ViewBag.Roles = list;
 
-        //    }
-        //    return View("ManageUserRoles");
+            }
+            return View("ManageUserRoles");
 
-        //}
+        }
     }
 }

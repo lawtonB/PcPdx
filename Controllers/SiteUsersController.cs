@@ -25,21 +25,21 @@ namespace PcPdx.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(User user)
+        public IActionResult Create(SiteUser user)
         {
-            db.Users.Add(user);
+            db.SiteUsers.Add(user);
             db.SaveChanges();
             return RedirectToAction("Index");
 
         }
         public IActionResult Edit(int id)
         {
-            var thisUser = db.Users.FirstOrDefault(users => users.UserId == id);
+            var thisUser = db.SiteUsers.FirstOrDefault(users => users.UserId == id);
             return View(thisUser);
         }
 
         [HttpPost]
-        public IActionResult Edit(User user)
+        public IActionResult Edit(SiteUser user)
         {
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
@@ -48,15 +48,15 @@ namespace PcPdx.Controllers
 
         public IActionResult Delete (int id)
         {
-            var thisUser = db.Users.FirstOrDefault(users => users.UserId == id);
+            var thisUser = db.SiteUsers.FirstOrDefault(users => users.UserId == id);
             return View(thisUser);
         }
 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            var thisUser = db.Users.FirstOrDefault(users => users.UserId == id);
-            db.Users.Remove(thisUser);
+            var thisUser = db.SiteUsers.FirstOrDefault(users => users.UserId == id);
+            db.SiteUsers.Remove(thisUser);
             db.SaveChanges();
             return RedirectToAction("index");
         }

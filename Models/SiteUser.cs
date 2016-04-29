@@ -7,8 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PcPdx.Models
 {
-    [Table("Users")]
-    public class User
+    [Table("SiteUsers")]
+    public class SiteUser
     {
         [Key]
         public int UserId { get; set; }

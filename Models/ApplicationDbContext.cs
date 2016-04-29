@@ -22,7 +22,7 @@ namespace PcPdx.Models
             options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=PcPdx;integrated security = True");
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<SiteUser> SiteUsers { get; set; }
         public DbSet<Show> Shows { get; set; }
     }
 }

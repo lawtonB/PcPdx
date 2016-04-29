@@ -14,6 +14,6 @@ namespace PcPdx.Models
         public int ShowId { get; set; }
         public string ShowTitle { get; set; }
         public int UserId { get; set; }
-        public virtual User User { get; set; }
+        public virtual SiteUser User { get; set; }
     }
 }
